@@ -283,10 +283,10 @@ def main():
         for c in contours:
             rect = cv2.minAreaRect(c)
             (x, y), (w, h), theta = rect #cv2.boundingRect(approx)
-            if w*2+h*2 < (box_w*2+box_h*2) * 3/4 and dist(box_center, (x, y)) < (box_w/4)**2 + (box_h/4)**2 and (c_biggest_area == None or cv2.contourArea(c) > cv2.contourArea(c_biggest_area)):
+            if w*2+h*2 < (box_w*2+box_h*2) * 3/4 and dist(box_center, (x, y)) < (box_w/4)**2 + (box_h/4)**2 and (c_biggest_area is None or cv2.contourArea(c) > cv2.contourArea(c_biggest_area)):
             #if (c_biggest_area == None or cv2.contourArea(c) > cv2.contourArea(c_biggest_area)):
                 c_biggest_area = c
-        if c_biggest_area == None or cv2.contourArea(c_biggest_area) < box_w * box_h / 36:
+        if c_biggest_area is None or cv2.contourArea(c_biggest_area) < box_w * box_h / 36:
             return None
 
         x, y, w, h = cv2.boundingRect(c_biggest_area)
